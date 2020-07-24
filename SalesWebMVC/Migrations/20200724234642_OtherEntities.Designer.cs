@@ -9,7 +9,7 @@ using SalesWebMVC.Data;
 namespace SalesWebMVC.Migrations
 {
     [DbContext(typeof(SalesWebMVCContext))]
-    [Migration("20200724222534_OtherEntities")]
+    [Migration("20200724234642_OtherEntities")]
     partial class OtherEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,18 +40,18 @@ namespace SalesWebMVC.Migrations
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<int?>("SallerId");
+                    b.Property<int?>("SellerId");
 
                     b.Property<int>("Status");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SallerId");
+                    b.HasIndex("SellerId");
 
                     b.ToTable("SalesRecord");
                 });
 
-            modelBuilder.Entity("SalesWebMVC.Models.Saller", b =>
+            modelBuilder.Entity("SalesWebMVC.Models.Seller", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -70,17 +70,17 @@ namespace SalesWebMVC.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Saller");
+                    b.ToTable("Seller");
                 });
 
             modelBuilder.Entity("SalesWebMVC.Models.SalesRecord", b =>
                 {
-                    b.HasOne("SalesWebMVC.Models.Saller", "Saller")
+                    b.HasOne("SalesWebMVC.Models.Seller", "Seller")
                         .WithMany("SalesRecords")
-                        .HasForeignKey("SallerId");
+                        .HasForeignKey("SellerId");
                 });
 
-            modelBuilder.Entity("SalesWebMVC.Models.Saller", b =>
+            modelBuilder.Entity("SalesWebMVC.Models.Seller", b =>
                 {
                     b.HasOne("SalesWebMVC.Models.Department", "Department")
                         .WithMany("Sallers")
